@@ -217,13 +217,9 @@ for r=2:n_rois+1
         if i<65                                                                                 % until subject 65 --> T2DM
             mean_per_subject_thr_T2DM = [mean_per_subject_thr_T2DM mean_per_subject_thr];       % every mean value of beta per T2DM subject in the Thr condition for each ROI 
             mean_per_subject_sub_T2DM = [mean_per_subject_sub_T2DM mean_per_subject_sub];
-%             total_list_mean_thr_T2DM = [total_list_mean_thr_T2DM mean_per_subject_thr];    
-%             total_list_mean_sub_T2DM = [total_list_mean_sub_T2DM mean_per_subject_sub];   
         else                                                                                    % after subject 65 --> CNT
             mean_per_subject_thr_CNT = [mean_per_subject_thr_CNT mean_per_subject_thr];         % every mean value of beta per CNT subject in the Thr condition for each ROI 
             mean_per_subject_sub_CNT = [mean_per_subject_sub_CNT mean_per_subject_sub];
-%             total_list_mean_thr_CNT = [total_list_mean_thr_CNT mean_per_subject_thr];      
-%             total_list_mean_sub_CNT = [total_list_mean_sub_CNT mean_per_subject_sub];
         end
     
         % Delete to not duplicate or interfere with data
@@ -261,7 +257,7 @@ for r=2:n_rois+1
     total_iqr_thr_T2DM = [total_iqr_thr_T2DM iqr_thr_T2DM];               % stores every interquartile range of the beta values over each datapoint of T2DM subjects in the Thr condition
         
     
-        % «««««««««««««««««««««««« PARAMETERS »»»»»»»»»»»»»»»»»»»»»»»»»»»
+        % Â«Â«Â«Â«Â«Â«Â«Â«Â«Â«Â«Â«Â«Â«Â«Â«Â«Â«Â«Â«Â«Â«Â«Â« PARAMETERS Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»
         
         % Estimating the HRF parameters of interest per group and condition 
         % in each ROI based on the average / median HRF 
@@ -355,7 +351,7 @@ for r=2:n_rois+1
     total_iqr_sub_T2DM = [total_iqr_sub_T2DM iqr_sub_T2DM];               
        
     
-        % «««««««««««««««««««««««« PARAMETERS »»»»»»»»»»»»»»»»»»»»»»»»»»»
+        % Â«Â«Â«Â«Â«Â«Â«Â«Â«Â«Â«Â«Â«Â«Â«Â«Â«Â«Â«Â«Â«Â«Â«Â« PARAMETERS Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»
 
         % Estimating the HRF parameters of interest per group and condition 
         % in each ROI based on the average / median HRF 
@@ -797,7 +793,7 @@ scatter(1:22,CV_peak_sub_T2DM,30,'MarkerEdgeColor',[0.64 0.08 0.18],...
                                  'LineWidth',0.75)
                             
 set(gca, 'XTick', 1:22, 'XTickLabel', ROI_regions);     % labels the x axis as the ROI names
-xtickangle(45)                                          % rotates the labels by 45º
+xtickangle(45)                                          % rotates the labels by 45Âº
 title('Coefficient of Variation - Peak Amplitude');
 xlabel('ROI')
 ylabel('Coefficient of Variation')  
