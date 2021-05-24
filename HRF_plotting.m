@@ -106,7 +106,7 @@ negative_hrf = negative_hrf(negative_hrf<0);                                    
 peak_latency = time(volume);                                                        % converts time volume into latency (adimensional to seconds)
         
 
-% «««««««««««««««««««««««««««« Initial dip »»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»
+% Â«Â«Â«Â«Â«Â«Â«Â«Â«Â«Â«Â«Â«Â«Â«Â«Â«Â«Â«Â«Â«Â«Â«Â«Â«Â«Â«Â« Initial dip Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»
 
 % In order to patch this HRF segment, we defined a perimeter comprised of a 
 % closed loop which starts and ends at the time point where the initial dip 
@@ -139,7 +139,7 @@ initial_dip.EdgeColor = 'none';
 hatch(initial_dip,20,[1 0.08 0.08],'--',3,1) 
 
 
-% «««««««««««««««««««««««««««« Undershoot »»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»
+% Â«Â«Â«Â«Â«Â«Â«Â«Â«Â«Â«Â«Â«Â«Â«Â«Â«Â«Â«Â«Â«Â«Â«Â«Â«Â«Â«Â« Undershoot Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»
 
 % In order to patch this HRF segment, we defined a perimeter comprised of a 
 % closed loop which starts and ends at the peak fall -> undershoot
@@ -183,7 +183,7 @@ positive_time = positive_time(positive_time>0);                                 
 positive_hrf = positive_hrf(positive_hrf>0);                                        % gets every positive initial dip HRF value
         
 
-% «««««««««««««««««« First positive HRF section (0-5s) »»»»»»»»»»»»»»»»»»»
+% Â«Â«Â«Â«Â«Â«Â«Â«Â«Â«Â«Â«Â«Â«Â«Â«Â«Â« First positive HRF section (0-5s) Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»
 
 % In order to patch this HRF segment, we first have to check if the HRF
 % has positive values before the initial dip. If so, this segment is then
@@ -262,7 +262,7 @@ up_to_five.EdgeColor = 'none';
 hatch(up_to_five,0,'w',':',6,2)
       
 
-% «««««««««««««««« Second positive HRF section (5-10s) »»»»»»»»»»»»»»»»»»
+% Â«Â«Â«Â«Â«Â«Â«Â«Â«Â«Â«Â«Â«Â«Â«Â« Second positive HRF section (5-10s) Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»
 
 % In order to patch this HRF segment, we defined a perimeter comprised of a 
 % closed loop which starts and ends at 5s, and contains the values of HRF 
@@ -316,7 +316,7 @@ hatch(five_to_ten,0,[1 0.93 0],':',6,2)
 hold on
 
 
-% ««««««««««««««« Third positive HRF section (10-17.5s) »»»»»»»»»»»»»»»»»
+% Â«Â«Â«Â«Â«Â«Â«Â«Â«Â«Â«Â«Â«Â«Â« Third positive HRF section (10-17.5s) Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»
 
 % If there are positive values after the time point of 10s, we need to
 % patch this extra HRF segment. To do so, we defined a perimeter comprised 
