@@ -20,7 +20,7 @@ clc
 hrf_parameters = [5.4 5.2 10.8 7.35 0.35 0];
 time = (0:175)/10;                                                                  % time of interest
 
-hrf = fmridesign(time,0,[1 0],[],hrf_parameters);                                   % designs the hrf according to a set of parameters
+hrf = fmridesign(time,0,[1 0],[],hrf_parameters);                                   % designs the HRF according to a set of parameters
 
 %% PLOTS:
 
@@ -75,7 +75,7 @@ id_hrf = [initial_dip_function; hrf(23:end)];                                   
 % Adjusting the quadratic function and the original HRF slopes so that the 
 % resulting HRF appears more homogeneous by using a linear function. 
 coeffs = polyfit(time(26:40)', hrf(26:40), 1);                                      % fitting the HRF values from 2.5 to 3.9 s into a linear function
-id_hrf(18:25)=(time(18:25)*coeffs(1) + coeffs(2))';                                 % using the linear function to replace the initial dip HRF values from 1.7 to 2.5s according to the linear function
+id_hrf(18:25)=(time(18:25)*coeffs(1) + coeffs(2))';                                 % using the linear function to replace the initial dip HRF values from 1.7 to 2.5 s according to the linear function
 
 
 % Initial dip HRF plot
@@ -111,7 +111,7 @@ negative_hrf = negative_hrf(negative_hrf<0);                                    
 peak_latency = time(volume);                                                        % converts time volume into latency (in seconds)
         
 
-% «««««««««««««««««««««««««««« Initial dip »»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»
+% Â«Â«Â«Â«Â«Â«Â«Â«Â«Â«Â«Â«Â«Â«Â«Â«Â«Â«Â«Â«Â«Â«Â«Â«Â«Â«Â«Â« Initial dip Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»
 
 % In order to patch this HRF segment, we defined a perimeter comprised of a 
 % closed loop which starts and ends at the time point where the initial dip 
@@ -125,7 +125,7 @@ if isequal(time(negative_time<=peak_latency),negative_time(negative_time<=peak_l
 else                                                                                            
     initial_dip_time = [negative_time(negative_time<=peak_latency); roots(2)];                  % gets the time points of the negative HRF values prior to the peak latency and of the initial dip -> rise peak transition zero - it is the 2nd intersection of the HRF with y=0 if the HRF has a zero before the end of the initial dip
 end
-initial_dip_hrf = [negative_hrf(negative_time<=peak_latency); 0];                               % gets the negative values of the HRF that were prior to the peak latency and the zero from the initial dip -> rise peak transition
+initial_dip_hrf = [negative_hrf(negative_time<=peak_latency); 0];                               % gets the negative HRF values that were prior to the peak latency and the zero from the initial dip -> rise peak transition
 
 % Perimeter part which contains the y=0 values and time values from 
 % [beginning of initial dip; end of initial dip[ s
@@ -144,7 +144,7 @@ initial_dip.EdgeColor = 'none';
 hatch(initial_dip,20,[1 0.08 0.08],'--',3,1) 
 
 
-% «««««««««««««««««««««««««««« Undershoot »»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»
+% Â«Â«Â«Â«Â«Â«Â«Â«Â«Â«Â«Â«Â«Â«Â«Â«Â«Â«Â«Â«Â«Â«Â«Â«Â«Â«Â«Â« Undershoot Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»
 
 % In order to patch this HRF segment, we defined a perimeter comprised of a 
 % closed loop which starts and ends at the peak fall -> undershoot
@@ -188,14 +188,14 @@ positive_time = positive_time(positive_time>0);                                 
 positive_hrf = positive_hrf(positive_hrf>0);                                        % gets every positive value of the initial dip HRF
         
 
-% «««««««««««««««««« First positive HRF section (0-5s) »»»»»»»»»»»»»»»»»»»
+% Â«Â«Â«Â«Â«Â«Â«Â«Â«Â«Â«Â«Â«Â«Â«Â«Â«Â« First positive HRF section (0-5s) Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»
 
 % In order to patch this HRF segment, we first have to check if the HRF
 % has positive values before the initial dip. If so, this segment is then
 % composed of two parts - the positive beginning of the HRF and the rise
 % peak - which will be patched separately.
 
-first_positive_hrf = positive_hrf(positive_time<=5);                                % gets every time value which corresponds to the values of the first positive HRF section
+first_positive_hrf = positive_hrf(positive_time<=5);                                % gets every time value corresponding to the values of the first positive HRF section
 first_positive_time = positive_time(positive_time<=5);                              % gets every value of the first positive HRF section
 
 
@@ -206,16 +206,16 @@ first_positive_time = positive_time(positive_time<=5);                          
 % closed loop which starts and ends at t=0s and contains the values of HRF 
 % and y=0 at the time window corresponding to that positive HRF beginning.
 
-if isempty(time(positive_time<roots(1)))==0                                                                 % if there is a positive HRF part before the initial dip
+if isempty(time(positive_time<roots(1)))==0                                                                 % if there are positive HRF values before the initial dip
     
     % Perimeter part which contains the HRF values and time values from 
     % ]positive HRF beginning; first zero-value of HRF] s
     positive_beginning_time = [first_positive_time(first_positive_time<roots(1)); roots(1)];                % gets the time points of the positive HRF values prior to the initial dip and of the positive beginning -> initial dip transition zero - it is the 1st intersection of the HRF with y=0 if the HRF is positive before the initial dip
-    positive_beginning_hrf = [first_positive_hrf(first_positive_time<roots(1)); 0];                         % gets the positive values of the HRF that were prior to the initial dip and the zero from the positive HRF beginning -> initial dip transition
+    positive_beginning_hrf = [first_positive_hrf(first_positive_time<roots(1)); 0];                         % gets the positive HRF values that were prior to the initial dip and the positive HRF beginning -> initial dip transition zero
     
     % Perimeter part which contains the y=0 values and time values from 
     % [positive HRF beginning; first zero-value of HRF[ s
-    positive_beginning_time_y0 = flipud([roots(1); first_positive_time(first_positive_time<roots(1))]);     % retrieves again the time points of the positive values of the HRF that were prior to the initial dip but including the instant of the first intersection between the HRF and y=0 (the positive HRF beginning -> initial dip transition) and flips them up to down       
+    positive_beginning_time_y0 = flipud([roots(1); first_positive_time(first_positive_time<roots(1))]);     % retrieves again the time points of the positive HRF values that were prior to the initial dip but including the instant of the first intersection between the HRF and y=0 (the positive HRF beginning -> initial dip transition) and flips them up to down       
     positive_beginning_hrf_y0 = zeros(length(positive_beginning_time_y0),1);                                % values of y=0 for each of these time points
     
     % We close the (positive HRF beginning -> first zero-value of HRF -> 
@@ -268,14 +268,14 @@ up_to_five.EdgeColor = 'none';
 hatch(up_to_five,0,'w',':',6,2)
       
 
-% ««««««««««««««« Second positive HRF section (5-10 s) »»»»»»»»»»»»»»»»»»
+% Â«Â«Â«Â«Â«Â«Â«Â«Â«Â«Â«Â«Â«Â«Â« Second positive HRF section (5-10 s) Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»
 
 % In order to patch this HRF segment, we defined a perimeter comprised of a 
 % closed loop which starts and ends at 5 s, and contains the values of HRF 
 % and y=0 at the time window from 5 to 10 s.
 
-second_positive_hrf = positive_hrf(positive_time>=5 & positive_time<10);
-second_positive_time = positive_time(positive_time>=5 & positive_time<10);
+second_positive_hrf = positive_hrf(positive_time>=5 & positive_time<10);            % gets every time value corresponding to the values of the second positive HRF section
+second_positive_time = positive_time(positive_time>=5 & positive_time<10);          % gets every value of the second positive HRF section
 
 
 % Perimeter part which contains the HRF values and time values from 
@@ -322,17 +322,18 @@ hatch(five_to_ten,0,[1 0.93 0],':',6,2)
 hold on
 
 
-% ««««««««««««««« Third positive HRF section (10-17.5 s) »»»»»»»»»»»»»»»»
+% Â«Â«Â«Â«Â«Â«Â«Â«Â«Â«Â«Â«Â«Â«Â« Third positive HRF section (10-17.5 s) Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»
 
 % If there are positive values after the time point of 10 s, we need to
 % patch this extra HRF segment. To do so, we defined a perimeter comprised 
 % of a closed loop which starts and ends at 10 s, and contains the values 
 % of HRF and y=0 at the time window from 10 to 17.5 s (the end of our HRF).
 
-third_positive_hrf = positive_hrf(positive_time>=10 & positive_time<17.5);
-third_positive_time = positive_time(positive_time>=10 & positive_time<17.5);
+third_positive_hrf = positive_hrf(positive_time>=10 & positive_time<17.5);          % gets every time value corresponding to the values of the third positive HRF section     
+third_positive_time = positive_time(positive_time>=10 & positive_time<17.5);        % gets every value of the third positive HRF section
 
-if isempty(third_positive_hrf)==0 && isempty(third_positive_time)==0                                % if from 10 to 17.5 s there are positive HRF values (the peak fall -> undershoot transition zero takes place in this time window)
+
+if isempty(third_positive_hrf)==0 && isempty(third_positive_time)==0                % if from 10 to 17.5 s there are positive HRF values (the peak fall -> undershoot transition zero takes place in this time window)
     
     % Perimeter part which contains the HRF values and time values from 
     % [10; 17.5[ s
@@ -352,7 +353,7 @@ if isempty(third_positive_hrf)==0 && isempty(third_positive_time)==0            
     % [10; 17.5[ s 
     if isempty(time(positive_time<roots(1)))==1 || isempty(time(negative_time<roots(1)))==0         
         if roots(3)>10                                                                              
-            ten_to_end_time_y0 = flipud(third_positive_time(third_positive_time<roots(3)));         % retrieves again the time points of the positive values of the HRF from 10 s to the end of peak fall -> undershoot transition zero - it is the 3rd intersection of the HRF with y=0 in this case and flips them up to down  
+            ten_to_end_time_y0 = flipud(third_positive_time(third_positive_time<roots(3)));         % retrieves again the time points of the positive HRF values from 10 s to the end of peak fall -> undershoot transition zero - it is the 3rd intersection of the HRF with y=0 in this case and flips them up to down  
         end
     else
         if roots(2)>10
